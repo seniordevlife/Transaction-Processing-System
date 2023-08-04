@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: upesibackend-deployment
+  labels:
+    app: upesibackend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: upesibackend
+  template:
+    metadata:
+      labels:
+        app: upesibackend
+    spec:
+      containers:
+        - name: upesibackend
+          image: upesimoneytransfercr.azurecr.io/upesimoneywebapi:latest
+          ports:
+            - containerPort: 80
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Development
+            - name: ASPNETCORE_URLS
+              value: http://*:80
+      imagePullSecrets:
+        - name: upesimoneysecret

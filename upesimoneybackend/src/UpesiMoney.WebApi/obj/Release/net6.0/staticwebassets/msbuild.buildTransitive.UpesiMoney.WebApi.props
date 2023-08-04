@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\UpesiMoney.WebApi.props" />
+</Project>

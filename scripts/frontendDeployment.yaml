@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: upesifrontend-deployment
+  labels:
+    app: upesifrontend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: upesifrontend
+  template:
+    metadata:
+      labels:
+        app: upesifrontend
+    spec:
+      containers:
+        - name: upesifrontend
+          image: upesimoneytransfercr.azurecr.io/upesimoneyfrontend:latest
+          ports:
+            - containerPort: 3000
+      imagePullSecrets:
+        - name: upesimoneysecret
